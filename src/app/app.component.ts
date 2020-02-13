@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {DataApiService} from './data-api.service';
 
 
 @Component({
@@ -7,6 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MeterPortal';
 
+
+
+
+  title = 'MeterPortal';
+  meterSub: any;
+  constructor(private dataApiService: DataApiService) {
+    if(this.meterSub)
+    this.meterSub.subscribe((res) => {
+      console.log(res.body);
+    });
+  }
+
+
+
+
+  createMeter() {
+    this.meterSub = this.dataApiService.createMeter();
+
+  }
 }
